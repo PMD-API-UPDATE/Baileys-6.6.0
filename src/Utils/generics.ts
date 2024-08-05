@@ -199,7 +199,14 @@ const MyId = insertLetters(baseString, lettersToInsert);
 
 export const generateMessageID = () => MyId
 */
-export const generateMessageID = () => randomBytes(16).toString('hex').toUpperCase()
+//export const generateMessageID = () => randomBytes(16).toString('hex').toUpperCase()
+
+export const generateMessageID = () => {
+    const baseString = generateRandomString(32 - 9);
+    const lettersToInsert = 'PRABATHMD';
+    return insertLetters(baseString, lettersToInsert);
+}
+
 
 export function bindWaitForEvent<T extends keyof BaileysEventMap>(ev: BaileysEventEmitter, event: T) {
 	return async(check: (u: BaileysEventMap[T]) => boolean | undefined, timeoutMs?: number) => {
